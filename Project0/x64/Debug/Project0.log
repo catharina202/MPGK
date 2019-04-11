@@ -1,0 +1,45 @@
+﻿Program.obj : error LNK2019: unresolved external symbol __imp_glewInit referenced in function "public: void __cdecl ProgramMPGK::inicjalizacjaGlew(void)" (?inicjalizacjaGlew@ProgramMPGK@@QEAAXXZ)
+Program.obj : error LNK2019: unresolved external symbol __imp_glewGetErrorString referenced in function "public: void __cdecl ProgramMPGK::inicjalizacjaGlew(void)" (?inicjalizacjaGlew@ProgramMPGK@@QEAAXXZ)
+Program.obj : error LNK2019: unresolved external symbol __imp_glewGetString referenced in function "public: void __cdecl ProgramMPGK::sprawdzenieWersji(void)" (?sprawdzenieWersji@ProgramMPGK@@QEAAXXZ)
+Program.obj : error LNK2019: unresolved external symbol __imp_glutInitWindowPosition referenced in function "public: void __cdecl ProgramMPGK::stworzenieOkna(int,char * *)" (?stworzenieOkna@ProgramMPGK@@QEAAXHPEAPEAD@Z)
+Program.obj : error LNK2019: unresolved external symbol __imp_glutInitWindowSize referenced in function "public: void __cdecl ProgramMPGK::stworzenieOkna(int,char * *)" (?stworzenieOkna@ProgramMPGK@@QEAAXHPEAPEAD@Z)
+Program.obj : error LNK2019: unresolved external symbol __imp_glutInitDisplayMode referenced in function "public: void __cdecl ProgramMPGK::stworzenieOkna(int,char * *)" (?stworzenieOkna@ProgramMPGK@@QEAAXHPEAPEAD@Z)
+Program.obj : error LNK2019: unresolved external symbol __imp_glutMainLoop referenced in function main
+Program.obj : error LNK2019: unresolved external symbol __imp_glutSwapBuffers referenced in function "public: static void __cdecl ProgramMPGK::wyswietl(void)" (?wyswietl@ProgramMPGK@@SAXXZ)
+Program.obj : error LNK2019: unresolved external symbol __imp_glutIdleFunc referenced in function main
+Program.obj : error LNK2019: unresolved external symbol __imp_glutDisplayFunc referenced in function main
+Program.obj : error LNK2019: unresolved external symbol __imp___glutInitWithExit referenced in function glutInit_ATEXIT_HACK
+Program.obj : error LNK2019: unresolved external symbol __imp___glutCreateWindowWithExit referenced in function glutCreateWindow_ATEXIT_HACK
+Program.obj : error LNK2019: unresolved external symbol __imp_glutCloseFunc referenced in function main
+Program.obj : error LNK2019: unresolved external symbol __imp_glutSetOption referenced in function main
+Program.obj : error LNK2019: unresolved external symbol __imp_glutInitContextVersion referenced in function "public: void __cdecl ProgramMPGK::stworzenieOkna(int,char * *)" (?stworzenieOkna@ProgramMPGK@@QEAAXHPEAPEAD@Z)
+Program.obj : error LNK2019: unresolved external symbol __imp_glutInitContextProfile referenced in function "public: void __cdecl ProgramMPGK::stworzenieOkna(int,char * *)" (?stworzenieOkna@ProgramMPGK@@QEAAXHPEAPEAD@Z)
+Program.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
+Program.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
+Program.obj : error LNK2001: unresolved external symbol __imp___glewDeleteBuffers
+Program.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
+Program.obj : error LNK2001: unresolved external symbol __imp___glewAttachShader
+Program.obj : error LNK2001: unresolved external symbol __imp___glewCompileShader
+Program.obj : error LNK2001: unresolved external symbol __imp___glewCreateProgram
+Program.obj : error LNK2001: unresolved external symbol __imp___glewCreateShader
+Program.obj : error LNK2001: unresolved external symbol __imp___glewDeleteProgram
+Program.obj : error LNK2001: unresolved external symbol __imp___glewDeleteShader
+Program.obj : error LNK2001: unresolved external symbol __imp___glewDisableVertexAttribArray
+Program.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
+Program.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramInfoLog
+Program.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramiv
+Program.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderInfoLog
+Program.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderiv
+Program.obj : error LNK2001: unresolved external symbol __imp___glewGetUniformLocation
+Program.obj : error LNK2001: unresolved external symbol __imp___glewLinkProgram
+Program.obj : error LNK2001: unresolved external symbol __imp___glewShaderSource
+Program.obj : error LNK2001: unresolved external symbol __imp___glewUniform1f
+Program.obj : error LNK2001: unresolved external symbol __imp___glewUseProgram
+Program.obj : error LNK2001: unresolved external symbol __imp___glewValidateProgram
+Program.obj : error LNK2001: unresolved external symbol __imp___glewVertexAttribPointer
+Program.obj : error LNK2001: unresolved external symbol __imp___glewBindVertexArray
+Program.obj : error LNK2001: unresolved external symbol __imp___glewDeleteVertexArrays
+Program.obj : error LNK2001: unresolved external symbol __imp___glewGenVertexArrays
+..\Lib\glew32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+..\Lib\freeglut.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\student\Documents\mpgk\MPGK\x64\Debug\Schema0.exe : fatal error LNK1120: 42 unresolved externals
