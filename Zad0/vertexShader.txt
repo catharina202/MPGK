@@ -1,0 +1,10 @@
+#version 330 core 												
+			layout(location=0) in vec4 polozenie; 
+			layout(location=1) in vec4 kolorVS;
+			out vec4 kolorFS;
+			uniform float zmianaShader;
+			void main()
+			{
+			gl_Position = vec4(zmianaShader * polozenie.x, zmianaShader * polozenie.y, zmianaShader * polozenie.z, polozenie.w);
+			kolorFS = kolorVS;
+			}

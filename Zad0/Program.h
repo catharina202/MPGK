@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include <iostream>
+#include <fstream>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <vector>
@@ -17,6 +18,7 @@ private:
 	static GLuint VAO;
 	static GLuint VBO;
 	static GLuint IBO;
+	static GLuint INDEKSY;
 	static GLuint programZShaderami;
 	static GLuint vertexShaderId;
 	static GLuint fragmentShaderId;

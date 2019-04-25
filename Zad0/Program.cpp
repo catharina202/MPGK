@@ -3,6 +3,7 @@
 GLuint ProgramMPGK::VAO;
 GLuint ProgramMPGK::VBO;
 GLuint ProgramMPGK::IBO;
+GLuint ProgramMPGK::INDEKSY;
 GLuint ProgramMPGK::programZShaderami;
 GLuint ProgramMPGK::vertexShaderId;
 GLuint ProgramMPGK::fragmentShaderId;
@@ -61,17 +62,22 @@ void  ProgramMPGK::wyswietl()
 
 	static GLfloat zmiana = 0.0f;
 	zmiana += 0.0005f;
-	glUniform1f(zmiennaShader, abs(sinf(zmiana)));
+	glUniform1f(zmiennaShader, abs(sinf(zmiana)));//Wielkoœæ obiektu do shadera
+
+
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, 0);//przekazanie do shadera pozycje i kolor
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, 0);
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, (GLvoid*)(sizeof(GLfloat) * 4));
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
 
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	glPopMatrix();
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
@@ -98,25 +104,51 @@ void ProgramMPGK::stworzenieVAO()
 void ProgramMPGK::stworzenieVBO()
 {
 	GLfloat wierzcholki[] = {
-		-0.4f, -0.4f, 0.0f, 1.0f,//wierzxcholek
-		1.0f,  0.0f, 0.0f, 1.0f,//kolor
-		0.4f, -0.4f, 0.4f, 1.0f,
-		0.0f,  1.0f, 0.0f, 1.0f,
-		-0.4f,  0.4f, 0.0f, 1.0f,
+
+
+		//"przednia" sciana
+		-0.4f, -0.4f, -0.4f, 1.0f,//wierzcholek
+		0.0f,  0.0f, 1.0f, 1.0f,//jego kolor
+
+		0.4f, -0.4f, -0.4f, 1.0f,
 		0.0f,  0.0f, 1.0f, 1.0f,
-		0.4f,  0.4f, 0.0f, 1.0f,
-		0.5f,  0.5f, 0.0f, 1.0f
+
+		-0.4f,  0.4f, -0.4f, 1.0f,
+		0.0f,  0.0f, 1.0f, 1.0f,
+
+		0.4f,  0.4f, -0.4f, 1.0f,
+		0.0f,  0.0f, 1.0f, 1.0f
+
+
+		//"tylna" sciana
+	  -0.4f, -0.4f, 0.4f, 1.0f,//wierzcholek
+		1.0f,  0.0f, 1.0f, 1.0f,//jego kolor
+
+		0.4f, -0.4f, 0.4f, 1.0f,
+		1.0f,  0.0f, 1.0f, 1.0f,
+
+		-0.4f,  0.4f, 0.4f, 1.0f,
+		1.0f,  0.0f, 1.0f, 1.0f,
+
+		0.4f,  0.4f, 0.4f, 1.0f,
+		1.0f,  0.0f, 1.0f, 1.0f
 	};
+
 
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(wierzcholki), wierzcholki, GL_STATIC_DRAW);
+
 }
 
 void ProgramMPGK::stworzenieIBO()
 {
-	GLuint indeksyTab[] = {
-		0, 1, 2, 1, 2, 3,
+	GLuint indeksyTab[] = { 0,1,2, 1,2,3, //przednia sciana  
+					 4,5,6, 5,6,7, //tylna sciana
+					 1,5,3, 5,3,7, //prawa sciana 
+					 4,0,2, 4,2,6, //lewa sciana
+					 0,1,4, 4,1,5, //dolna sciana 
+					 2,3,7, 7,6,2 //gorna sciana 
 	};
 
 	glGenBuffers(1, &IBO);
@@ -135,26 +167,17 @@ void ProgramMPGK::stworzenieProgramu()
 		exit(1);
 	}
 
-	const char * vertexShader =
-		"	#version 330 core \n																	\
-			layout(location=0) in vec4 polozenie; \n												\
-			layout(location=1) in vec4 kolorVS; \n													\
-			out vec4 kolorFS; \n																	\
-			uniform float zmianaShader; \n															\
-			void main()			 \n																	\
-			{		 \n																				\
-				gl_Position = vec4(zmianaShader * polozenie.x, zmianaShader * polozenie.y, zmianaShader * polozenie.z, polozenie.w); \n		\
-				kolorFS = kolorVS; \n																\
-			}";
+	const char * vertexShader;
+	std::ifstream myfile0("vertexShader.txt");
+	std::string contents0((std::istreambuf_iterator<char>(myfile0)),
+		std::istreambuf_iterator<char>());
+	vertexShader = contents0.c_str();
 
-	const char * fragmentShader =
-		"	#version 330 core \n						\
-			out vec4 kolor;	\n							\
-			in vec4 kolorFS; \n							\
-			void main()	\n								\
-			{			\n								\
-				kolor = kolorFS;	\n					\
-			}";
+	const char * fragmentShader;
+	std::ifstream myfile1("fragmentShader.txt");
+	std::string contents1((std::istreambuf_iterator<char>(myfile1)),
+		std::istreambuf_iterator<char>());
+	fragmentShader = contents1.c_str();
 
 	vertexShaderId = dodanieDoProgramu(programZShaderami, vertexShader, GL_VERTEX_SHADER);
 	fragmentShaderId = dodanieDoProgramu(programZShaderami, fragmentShader, GL_FRAGMENT_SHADER);

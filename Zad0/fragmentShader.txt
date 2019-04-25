@@ -1,0 +1,7 @@
+#version 330 core
+			out vec4 kolor;				
+			in vec4 kolorFS; 							
+			void main()									
+			{										
+				kolor = kolorFS;				
+			}
